@@ -6,6 +6,7 @@
  */
 int main()
 {
-	printf("Hello,World!");
+	printf("Hello,World!\n");
+	puts("第一个C语言程序");
 	return 0;
 }
