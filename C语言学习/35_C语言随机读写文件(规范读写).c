@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /**
  * 文件定位函数void rewind(FILE* fp);  //用来将位置指针移动到文件开头
  * int fseek(FILE* fp, long offset, int origin);
@@ -65,11 +66,28 @@ int main()
 
     //重置指针
     rewind(fp);
-    fseek(fp,sizeof(struct STU),SEEK_SET);
-    //读取第二行的数据
-    fscanf(fp,"%s\t%d\t%s\n",stu1.name,&stu1.age,stu1.address);
+    //将所有数据从文件读取到另一个数组中
+    struct STU saveArray[1024];
+    int index=0;
+    while(!feof(fp))
+    {
+        fscanf(fp,"%s\t%d\t%s\t",saveArray[index].name,&saveArray[index].age,saveArray[index].address);
+        index++;
+    }
 
-    printf("%s\t%d\t%s\n",stu1.name,stu1.age,stu1.address);
-
+    printf("第二条数据为:\n");
+    printf("姓名:%s\t年龄:%d\t地址:%s\n",saveArray[1].name,saveArray[1].age,saveArray[1].address);
+    //数组清空，提供下一次操作
+    clear(saveArray,1024);
+    fclose(fp);
     return 0;
+}
+
+
+void clear(int arr[],int len)
+{
+    for(int i=0;i<len;i++)
+    {
+        arr[i]=0;
+    }
 }
