@@ -16,7 +16,7 @@ int main()
 	printf("请输入a,b,c:");
 	scanf("%d %d %d",&a,&b,&c);
 	
-	high=max(max(a,b),c);
+	high=max(max(a,b),c); 
 	middle=min(high,c);
 	low=min(min(a,b),c);
 	
